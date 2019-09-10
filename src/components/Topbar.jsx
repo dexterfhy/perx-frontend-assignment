@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
+import {Navbar, Nav} from 'react-bootstrap';
 import { ReactComponent as LogoSVG } from '../assets/images/notebook.svg';
 
 export default class Topbar extends React.Component {

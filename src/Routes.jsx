@@ -1,7 +1,6 @@
 import React from 'react';
 import { Router } from '@reach/router';
 
-import LoadingIndicator from './components/LoadingIndicator';
 import Nothing from './components/Nothing';
 import Topbar from './components/Topbar';
 import LandingPageView from './views/LandingPageView';

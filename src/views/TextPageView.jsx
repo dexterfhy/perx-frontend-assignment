@@ -10,8 +10,8 @@ export default class TextPageView extends React.Component {
 
 	changeText = () => {
 		if (!this.state.subscribed) {
-			if (document.getElementById('text-page-email-input').value != "") {
-				if (this.state.validEmail == true) {
+			if (document.getElementById('text-page-email-input').value !== "") {
+				if (this.state.validEmail === true) {
 					document.getElementsByClassName('content-subscribe')[0].style.opacity = '0';
 					document.getElementsByClassName('email-input-subscribe')[0].style.opacity = '0';
 
@@ -50,7 +50,7 @@ export default class TextPageView extends React.Component {
 
 		var address = document.getElementById('text-page-email-input').value;
 
-	    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
      	this.setState({
      		validEmail: re.test(String(address).toLowerCase())
@@ -90,7 +90,7 @@ export default class TextPageView extends React.Component {
 						    </span>
 						  </p>
 						</div>
-						<a className="button is-primary is-large enabled" id='text-page-subscribe-button' onClick={this.changeText}>Subscribe</a>
+						<a className="button is-primary is-large enabled" id='text-page-subscribe-button' href="/" onClick={this.changeText}>Subscribe</a>
 					</div>
 				</div>
 			</div>

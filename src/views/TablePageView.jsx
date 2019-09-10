@@ -14,7 +14,7 @@ const columnsDesktop = [
 		sortable: false,
 		filterable: false,
 	    Cell: row => (
-				<img src={row.value} alt="Cover Image" />
+				<img src={row.value} alt="Cover" />
 	   		)
       }	
     ]
@@ -68,9 +68,9 @@ const columnsDesktop = [
 	    Cell: row => {	    		    	
 	    	return (
 				<div className="external-links-cell">
-					<a href={row.value.links.self} target="_blank"><i className="fas fa-book perx-icons"></i>Title</a>
-					<a href={row.value.relationships.authors.links.self} target="_blank"><i className="fas fa-user perx-icons"></i>Author</a>
-					<a href={row.value.relationships.publishers.links.self} target="_blank"><i className="fas fa-building perx-icons"></i>Publisher</a>
+					<a href={row.value.links.self} target="_blank" rel="noopener noreferrer"><i className="fas fa-book perx-icons"></i>Title</a>
+					<a href={row.value.relationships.authors.links.self} target="_blank" rel="noopener noreferrer"><i className="fas fa-user perx-icons"></i>Author</a>
+					<a href={row.value.relationships.publishers.links.self} target="_blank" rel="noopener noreferrer"><i className="fas fa-building perx-icons"></i>Publisher</a>
 				</div>
 	   		)
    		}
@@ -87,8 +87,8 @@ const columnsDesktop = [
 	    Cell: row => {	    		    	
 	    	return (
 				<div className="external-links-cell">
-					<a href={row.value.relationships.authors.links.related} target="_blank"><i className="fas fa-user perx-icons"></i>Author</a>
-					<a href={row.value.relationships.publishers.links.related} target="_blank"><i className="fas fa-building perx-icons"></i>Publisher</a>
+					<a href={row.value.relationships.authors.links.related} target="_blank" rel="noopener noreferrer"><i className="fas fa-user perx-icons"></i>Author</a>
+					<a href={row.value.relationships.publishers.links.related} target="_blank" rel="noopener noreferrer"><i className="fas fa-building perx-icons"></i>Publisher</a>
 				</div>
 	   		)
    		}
@@ -108,7 +108,7 @@ const columnsTablet = [
 		sortable: false,
 		filterable: false,
 	    Cell: row => (
-				<img src={row.value} alt="Cover Image" />
+				<img src={row.value} alt="Cover" />
 	   		)
       }	
     ]
@@ -243,22 +243,22 @@ export default class TablePageView extends React.Component {
 
 	render() {
 		//repositions page to include navigation bar
-		if (this.state.data == null && this.state.errorLoad == "") window.scrollTo(0, 0);
+		if (this.state.data === null && this.state.errorLoad === "") window.scrollTo(0, 0);
 		return (
 			<div className="table-page-container">
 				<div className="table-page-text">
-					<span className={"is-header table-page-header" + (this.state.currentView == "mobile" ? " is-size-2" : " is-size-1")}>Our Collection</span><br />
-					<span className={"is-header" + (this.state.currentView == "mobile" ? " is-size-5" : " is-size-4")}>Vivamus id hendrerit felis. Morbi tincidunt nibh non turpis consequat, tincidunt aliquam lorem vulputate. </span>
+					<span className={"is-header table-page-header" + (this.state.currentView === "mobile" ? " is-size-2" : " is-size-1")}>Our Collection</span><br />
+					<span className={"is-header" + (this.state.currentView === "mobile" ? " is-size-5" : " is-size-4")}>Vivamus id hendrerit felis. Morbi tincidunt nibh non turpis consequat, tincidunt aliquam lorem vulputate. </span>
 		        </div>
-		        {this.state.loadedData == true ?
-		        	this.state.errorLoad == "" ? 
+		        {this.state.loadedData === true ?
+		        	this.state.errorLoad === "" ? 
 		        		(
 							<ReactTable
 					          data={this.state.data}
 					          columns={this.state.columns}
 					          className=""
 							  showPageSizeOptions={false}
-							  pageSize={this.state.currentView == "mobile" ? 15 : 5}
+							  pageSize={this.state.currentView === "mobile" ? 15 : 5}
 							  filterable= {true}
 							  multisort={true}
 							  defaultFilterMethod= {(filter, row, column) => {
@@ -266,33 +266,33 @@ export default class TablePageView extends React.Component {
 							    return row[id] !== undefined ? String(row[id]).toLowerCase().includes(filter.value.toLowerCase()) : true
 							  }}
 							  SubComponent=
-							  {this.state.currentView != "desktop" ? 
+							  {this.state.currentView !== "desktop" ? 
 								  row => {
 								  	console.log(row);
 								    return (
 								      <div className="table-page-subcomponent">
-								      	{this.state.currentView == "mobile" ? 
+								      	{this.state.currentView === "mobile" ? 
 								      		(
 							      			<div style={{display: 'flex'}}>
-									      		<img src={row.original.attributes.display_properties.image} alt="Cover Image" />
+									      		<img src={row.original.attributes.display_properties.image} alt="Cover" />
 										      	<div className="table-page-subcomponent-text">
 											      	<span className="is-header is-size-6">External Links</span>
 													<div className="external-link-container-mobile">
 														<i className="fas fa-book perx-icons"></i>
 														<span>
-															Title:<br /><a href={row.original.links.self} target="_blank">Self</a>
+															Title:<br /><a href={row.original.links.self} target="_blank" rel="noopener noreferrer">Self</a>
 														</span>
 													</div>
 													<div className="external-link-container-mobile">
 														<i className="fas fa-user perx-icons"></i>
 														<span>
-															Author:<br /><a href={row.original.relationships.authors.links.self} target="_blank">Self</a> | <a href={row.original.relationships.authors.links.related} target="_blank">Related</a>
+															Author:<br /><a href={row.original.relationships.authors.links.self} target="_blank" rel="noopener noreferrer">Self</a> | <a href={row.original.relationships.authors.links.related} target="_blank" rel="noopener noreferrer">Related</a>
 														</span>
 													</div>
 													<div className="external-link-container-mobile">
 														<i className="fas fa-building perx-icons"></i>
 														<span>
-															Publisher:<br /><a href={row.original.relationships.publishers.links.self} target="_blank">Self</a> | <a href={row.original.relationships.publishers.links.related} target="_blank">Related</a>
+															Publisher:<br /><a href={row.original.relationships.publishers.links.self} target="_blank" rel="noopener noreferrer">Self</a> | <a href={row.original.relationships.publishers.links.related} target="_blank" rel="noopener noreferrer">Related</a>
 														</span>
 											      	</div>
 										      	</div>
@@ -303,13 +303,13 @@ export default class TablePageView extends React.Component {
 									      	<div className="table-page-subcomponent-text">
 										      	<span className="is-header is-size-5">External Links</span>
 												<span>
-													<i className="fas fa-book perx-icons"></i>Title: <a href={row.original.links.self} target="_blank">Self</a>
+													<i className="fas fa-book perx-icons"></i>Title: <a href={row.original.links.self} target="_blank" rel="noopener noreferrer">Self</a>
 												</span>
 												<span>
-													<i className="fas fa-user perx-icons"></i>Author: <a href={row.original.relationships.authors.links.self} target="_blank">Self</a> | <a href={row.original.relationships.authors.links.related} target="_blank">Related</a>
+													<i className="fas fa-user perx-icons"></i>Author: <a href={row.original.relationships.authors.links.self} target="_blank" rel="noopener noreferrer">Self</a> | <a href={row.original.relationships.authors.links.related} target="_blank" rel="noopener noreferrer">Related</a>
 												</span>
 												<span>
-													<i className="fas fa-building perx-icons"></i>Publisher: <a href={row.original.relationships.publishers.links.self} target="_blank">Self</a> | <a href={row.original.relationships.publishers.links.related} target="_blank">Related</a>
+													<i className="fas fa-building perx-icons"></i>Publisher: <a href={row.original.relationships.publishers.links.self} target="_blank" rel="noopener noreferrer">Self</a> | <a href={row.original.relationships.publishers.links.related} target="_blank" rel="noopener noreferrer">Related</a>
 										      	</span>
 									      	</div>
 							      			)
@@ -339,7 +339,7 @@ export default class TablePageView extends React.Component {
 						          columns={this.state.columns}
 						          className=""
 								  showPageSizeOptions={false}
-								  pageSize={this.state.currentView == "mobile" ? 15 : 5}
+								  pageSize={this.state.currentView === "mobile" ? 15 : 5}
 						        />
 					        </>
 						)

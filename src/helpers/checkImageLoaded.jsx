@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function checkImageLoaded(element) {
     var bg = "";
     if (element.currentStyle) { // IE

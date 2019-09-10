@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router'
 
-import LoadingIndicator from '../components/LoadingIndicator';
 import checkImageLoaded from '../helpers/checkImageLoaded';
 
 export default class LandingPageView extends React.Component {
@@ -20,7 +19,7 @@ export default class LandingPageView extends React.Component {
 					<span className="is-size-1 is-header has-text-weight-bold">Once Upon a Book</span>
 					<span className="is-size-4">Turn the page on a whole new reading experience.</span>
 					<Link to="/table">
-						<a class="button is-large is-rounded is-dark is-outlined">
+						<a class="button is-large is-rounded is-dark is-outlined" href="/">
 						    <span class="icon">
 						      <i class="fas fa-book-open"></i>
 						    </span>
